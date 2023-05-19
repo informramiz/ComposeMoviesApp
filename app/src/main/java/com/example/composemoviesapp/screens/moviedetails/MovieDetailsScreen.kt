@@ -13,7 +13,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,9 +38,18 @@ fun MovieDetailsScreen(movie: String, onNavigateBack: () -> Unit) {
             )
         }
     ) { contentPadding ->
-        Box(modifier = Modifier.padding(contentPadding)) {
+        Box(
+            modifier = Modifier.padding(contentPadding),
+        ) {
             Text(text = "Movie argument: $movie")
         }
     }
+}
 
+@Preview
+@Composable
+private fun MovieDetailDefaultPreview() {
+    MovieDetailsScreen(movie = "300") {
+
+    }
 }
