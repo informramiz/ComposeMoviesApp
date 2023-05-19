@@ -28,7 +28,10 @@ fun AppNavigation() {
                 navArgument("movie") { NavType.StringType }
             )
         ) { backStackEntry ->
-            MovieDetailsScreen( backStackEntry.arguments!!.getString("movie")!!)
+            MovieDetailsScreen(
+                movie = backStackEntry.arguments!!.getString("movie")!!,
+                onNavigateBack = { navController.popBackStack() }
+            )
         }
     }
 }
