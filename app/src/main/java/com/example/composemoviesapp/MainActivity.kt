@@ -96,8 +96,7 @@ private fun MovieRow(movie: String) {
         modifier = Modifier
             .padding(4.dp)
             .fillMaxWidth()
-            .height(120.dp)
-        ,
+            .height(120.dp),
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
