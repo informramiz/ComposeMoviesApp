@@ -8,7 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.composemoviesapp.screens.AppScreen
 import com.example.composemoviesapp.screens.home.HomeScreen
-import com.example.composemoviesapp.screens.moviedetails.MovieDetails
+import com.example.composemoviesapp.screens.moviedetails.MovieDetailsScreen
 
 @Composable
 fun AppNavigation() {
@@ -28,7 +28,7 @@ fun AppNavigation() {
                 navArgument("movie") { NavType.StringType }
             )
         ) { backStackEntry ->
-            MovieDetails( backStackEntry.arguments!!.getString("movie")!!)
+            MovieDetailsScreen( backStackEntry.arguments!!.getString("movie")!!)
         }
     }
 }
