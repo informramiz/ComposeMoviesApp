@@ -4,6 +4,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun MovieDetails() {
-    Text(text = "This is Movie Details placeholder")
+fun MovieDetails(movie: String) {
+    Text(text = "Movie argument: $movie")
 }
