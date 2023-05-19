@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -28,7 +30,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun MyApp(content: @Composable () -> Unit) {
@@ -45,8 +46,10 @@ private fun MyApp(content: @Composable () -> Unit) {
                     colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
                 )
             }
-        ) {
-            content()
+        ) { contentPadding ->
+            Box(modifier = Modifier.padding(contentPadding)) {
+                content()
+            }
         }
     }
 }
