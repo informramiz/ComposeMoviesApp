@@ -1,14 +1,14 @@
 package com.example.composemoviesapp.screens
 
 enum class AppScreen {
-    HomeScreen,
-    DetailsScreen;
+    Home,
+    MovieDetails;
 
     companion object {
         fun fromRoute(route: String?): AppScreen {
             return when (route?.substringBefore("/")) {
-                HomeScreen.name, null -> HomeScreen
-                DetailsScreen.name -> DetailsScreen
+                Home.name, null -> Home
+                MovieDetails.name -> MovieDetails
                 else -> throw IllegalArgumentException("Route $route is not recognized")
             }
         }

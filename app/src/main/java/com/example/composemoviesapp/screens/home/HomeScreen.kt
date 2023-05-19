@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(onNavigateToDetailsScreen: () -> Unit) {
+fun HomeScreen(onNavigateToDetailsScreen: (String) -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -49,13 +49,13 @@ fun HomeScreen(onNavigateToDetailsScreen: () -> Unit) {
         }
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
-            MainContent()
+            MainContent(onNavigateToDetailsScreen)
         }
     }
 }
 
 @Composable
-private fun MainContent() {
+private fun MainContent(onMovieItemClick: (String) -> Unit) {
     val movies = listOf(
         "Harry Potter",
         "Justice League",
@@ -71,18 +71,16 @@ private fun MainContent() {
         "Lords of the Rings: The Two Towers",
         "Lords of the Rings: The Return of the King"
     )
-    MoviesList(movies = movies)
+    MoviesList(movies = movies, onMovieItemClick)
 }
 
 @Composable
-private fun MoviesList(movies: List<String>) {
+private fun MoviesList(movies: List<String>, onMovieItemClick: (String) -> Unit) {
     LazyColumn(
         contentPadding = PaddingValues(12.dp)
     ) {
         items(movies) {
-            MovieRow(movie = it) {
-                // TODO
-            }
+            MovieRow(movie = it, onMovieItemClick)
         }
     }
 }
