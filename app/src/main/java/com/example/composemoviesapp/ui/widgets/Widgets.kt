@@ -20,8 +20,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.example.composemoviesapp.data.MovieRepository
 import com.example.composemoviesapp.data.model.Movie
 
@@ -42,13 +45,16 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
-            Icon(
-                modifier = Modifier
-                    .size(100.dp)
+            AsyncImage(
+                modifier = Modifier.size(100.dp)
                     .clip(RectangleShape),
-                imageVector = Icons.Default.AccountBox,
-                contentDescription = "Movie image"
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(movie.images.first())
+                    .crossfade(true)
+                    .build(),
+                contentDescription = "Movie Image",
             )
+
             Text(text = movie.title)
         }
     }
