@@ -53,7 +53,10 @@ private fun MoviesList(movies: List<Movie>, onMovieItemClick: (String) -> Unit) 
         contentPadding = PaddingValues(12.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        items(movies) {
+        items(
+            movies,
+            key = {it.id }
+        ) {
             MovieRow(movie = it, onItemClick = onMovieItemClick)
         }
     }
