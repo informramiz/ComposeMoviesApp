@@ -52,7 +52,7 @@ private fun MoviesList(movies: List<Movie>, onMovieItemClick: (String) -> Unit) 
         contentPadding = PaddingValues(12.dp)
     ) {
         items(movies) {
-            MovieRow(movie = it, onMovieItemClick)
+            MovieRow(movie = it, onItemClick = onMovieItemClick)
         }
     }
 }

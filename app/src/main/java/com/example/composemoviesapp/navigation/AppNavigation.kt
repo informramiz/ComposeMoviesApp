@@ -36,7 +36,7 @@ fun AppNavigation() {
         ) { backStackEntry ->
             MovieDetailsScreen(
                 movieId = backStackEntry.arguments!!.getString("movieId")!!,
-                movieRepository,
+                movieRepository = movieRepository,
                 onNavigateBack = { navController.popBackStack() }
             )
         }
