@@ -105,7 +105,6 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit) {
 
                 AnimatedVisibility(visible = expandedState.value) {
                     Column {
-                        Divider()
                         Text(
                             modifier = Modifier.padding(top = 4.dp),
                             text = annotatedString("Plot: ", movie.plot),
