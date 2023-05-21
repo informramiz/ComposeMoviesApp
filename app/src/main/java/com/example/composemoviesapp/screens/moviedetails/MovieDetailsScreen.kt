@@ -85,7 +85,10 @@ fun HorizontalScrollableImagesView(images: List<String>) {
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         contentPadding = PaddingValues(horizontal = 12.dp)
     ) {
-        items(images) {image ->
+        items(
+            images,
+            key = { it }
+        ) {image ->
             Card(
                 modifier = Modifier
                     .size(240.dp),
