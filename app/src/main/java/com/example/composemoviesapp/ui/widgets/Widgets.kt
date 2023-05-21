@@ -50,7 +50,6 @@ fun MovieRow(modifier: Modifier = Modifier, movie: Movie, onItemClick: (String) 
 
     Card(
         modifier = modifier
-            .padding(4.dp)
             .fillMaxWidth()
             .wrapContentHeight()
             .clickable { onItemClick(movie.id) },

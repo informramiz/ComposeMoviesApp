@@ -1,5 +1,6 @@
 package com.example.composemoviesapp.screens.home
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -49,7 +50,8 @@ private fun MainContent(movies: List<Movie>, onMovieItemClick: (String) -> Unit)
 @Composable
 private fun MoviesList(movies: List<Movie>, onMovieItemClick: (String) -> Unit) {
     LazyColumn(
-        contentPadding = PaddingValues(12.dp)
+        contentPadding = PaddingValues(12.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         items(movies) {
             MovieRow(movie = it, onItemClick = onMovieItemClick)
