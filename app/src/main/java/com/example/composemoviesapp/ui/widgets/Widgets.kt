@@ -2,6 +2,7 @@ package com.example.composemoviesapp.ui.widgets
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -13,6 +14,7 @@ import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -46,7 +48,8 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit) {
             horizontalArrangement = Arrangement.Start
         ) {
             AsyncImage(
-                modifier = Modifier.size(100.dp)
+                modifier = Modifier
+                    .size(100.dp)
                     .clip(RectangleShape),
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(movie.images.first())
@@ -55,7 +58,24 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit) {
                 contentDescription = "Movie Image",
             )
 
-            Text(text = movie.title)
+            Column(
+                modifier = Modifier.padding(6.dp)
+            ) {
+                Text(
+                    text = movie.title,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+
+                Text(
+                    text = "Director: ${movie.director}",
+                    style = MaterialTheme.typography.bodySmall
+                )
+
+                Text(
+                    text = "Released: ${movie.year}",
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
         }
     }
 }
