@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
@@ -24,6 +25,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -54,13 +56,14 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit) {
             AsyncImage(
                 modifier = Modifier
                     .size(100.dp)
-                    .clip(RectangleShape),
+                    .clip(CircleShape),
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(movie.images.first())
                     .crossfade(true)
                     .build(),
                 contentDescription = "Movie Image",
-                placeholder = rememberVectorPainter(image = Icons.Default.Image)
+                placeholder = rememberVectorPainter(image = Icons.Default.Image),
+                contentScale = ContentScale.Crop
             )
 
             Column(
