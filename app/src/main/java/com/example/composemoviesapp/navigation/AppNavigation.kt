@@ -1,6 +1,7 @@
 package com.example.composemoviesapp.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -14,10 +15,13 @@ import com.example.composemoviesapp.screens.moviedetails.MovieDetailsScreen
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
+    val movieRepository = remember {
+        MovieRepository()
+    }
     NavHost(navController = navController, startDestination = AppScreen.Home.name) {
         composable(AppScreen.Home.name) {
             HomeScreen(
-                MovieRepository(),
+                movieRepository,
                 onNavigateToDetailsScreen = { movie ->
                     navController.navigate(route = AppScreen.MovieDetails.name + "/$movie")
                 }
@@ -25,13 +29,14 @@ fun AppNavigation() {
         }
 
         composable(
-            AppScreen.MovieDetails.name + "/{movie}",
+            AppScreen.MovieDetails.name + "/{movieId}",
             arguments = listOf(
-                navArgument("movie") { NavType.StringType }
+                navArgument("movieId") { NavType.StringType }
             )
         ) { backStackEntry ->
             MovieDetailsScreen(
-                movie = backStackEntry.arguments!!.getString("movie")!!,
+                movieId = backStackEntry.arguments!!.getString("movieId")!!,
+                movieRepository,
                 onNavigateBack = { navController.popBackStack() }
             )
         }
