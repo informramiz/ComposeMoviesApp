@@ -16,3 +16,4 @@ This app covers the following concepts.
 8. How to correctly add `space in between items` of LazyRow or LazyColumn.
 9. Use of `Scafold` layout of `Material Design 3`.
 10. `Material Design 3`.
+11. Use of `AnnotatedString` in Compose.
