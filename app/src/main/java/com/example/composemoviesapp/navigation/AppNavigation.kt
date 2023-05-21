@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.composemoviesapp.data.MovieRepository
 import com.example.composemoviesapp.screens.AppScreen
 import com.example.composemoviesapp.screens.home.HomeScreen
 import com.example.composemoviesapp.screens.moviedetails.MovieDetailsScreen
@@ -16,6 +17,7 @@ fun AppNavigation() {
     NavHost(navController = navController, startDestination = AppScreen.Home.name) {
         composable(AppScreen.Home.name) {
             HomeScreen(
+                MovieRepository(),
                 onNavigateToDetailsScreen = { movie ->
                     navController.navigate(route = AppScreen.MovieDetails.name + "/$movie")
                 }

@@ -2,7 +2,7 @@ package com.example.composemoviesapp.data
 
 import com.example.composemoviesapp.data.model.Movie
 
-object MovieRepository {
+class MovieRepository {
     fun getMovies(): List<Movie> {
         return listOf(
             Movie(id = "tt0499549",
@@ -141,5 +141,9 @@ object MovieRepository {
                 rating = "9.5"),
 
             )
+    }
+
+    fun getMovieById(id: String): Movie? {
+        return getMovies().firstOrNull { it.id == id }
     }
 }

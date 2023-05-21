@@ -31,10 +31,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.composemoviesapp.data.MovieRepository
+import com.example.composemoviesapp.data.model.Movie
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(onNavigateToDetailsScreen: (String) -> Unit) {
+fun HomeScreen(movieRepository: MovieRepository, onNavigateToDetailsScreen: (String) -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -49,33 +51,18 @@ fun HomeScreen(onNavigateToDetailsScreen: (String) -> Unit) {
         }
     ) { contentPadding ->
         Box(modifier = Modifier.padding(contentPadding)) {
-            MainContent(onNavigateToDetailsScreen)
+            MainContent(movieRepository.getMovies(), onNavigateToDetailsScreen)
         }
     }
 }
 
 @Composable
-private fun MainContent(onMovieItemClick: (String) -> Unit) {
-    val movies = listOf(
-        "Harry Potter",
-        "Justice League",
-        "300",
-        "Avengers: Endgame",
-        "Spiderman noway home",
-        "Avengers: Infinity War",
-        "The Batman",
-        "Accountant",
-        "Army of the Dead",
-        "Extraction",
-        "Inception",
-        "Lords of the Rings: The Two Towers",
-        "Lords of the Rings: The Return of the King"
-    )
+private fun MainContent(movies: List<Movie>, onMovieItemClick: (String) -> Unit) {
     MoviesList(movies = movies, onMovieItemClick)
 }
 
 @Composable
-private fun MoviesList(movies: List<String>, onMovieItemClick: (String) -> Unit) {
+private fun MoviesList(movies: List<Movie>, onMovieItemClick: (String) -> Unit) {
     LazyColumn(
         contentPadding = PaddingValues(12.dp)
     ) {
@@ -86,13 +73,13 @@ private fun MoviesList(movies: List<String>, onMovieItemClick: (String) -> Unit)
 }
 
 @Composable
-private fun MovieRow(movie: String, onItemClick: (String) -> Unit) {
+private fun MovieRow(movie: Movie, onItemClick: (String) -> Unit) {
     Card(
         modifier = Modifier
             .padding(4.dp)
             .fillMaxWidth()
             .height(120.dp)
-            .clickable { onItemClick(movie) },
+            .clickable { onItemClick(movie.id) },
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
@@ -109,7 +96,7 @@ private fun MovieRow(movie: String, onItemClick: (String) -> Unit) {
                 imageVector = Icons.Default.AccountBox,
                 contentDescription = "Movie image"
             )
-            Text(text = movie)
+            Text(text = movie.title)
         }
     }
 }
@@ -117,7 +104,7 @@ private fun MovieRow(movie: String, onItemClick: (String) -> Unit) {
 @Preview
 @Composable
 fun HomePreview() {
-    HomeScreen {
+    HomeScreen(MovieRepository()) {
 
     }
 }
