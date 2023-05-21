@@ -36,6 +36,11 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -85,16 +90,16 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit) {
             ) {
                 Text(
                     text = movie.title,
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.titleMedium
                 )
 
                 Text(
-                    text = "Director: ${movie.director}",
+                    text = annotatedString("Director: ", movie.director),
                     style = MaterialTheme.typography.bodySmall
                 )
 
                 Text(
-                    text = "Released: ${movie.year}",
+                    text = annotatedString("Released: ", movie.year),
                     style = MaterialTheme.typography.bodySmall
                 )
 
@@ -103,19 +108,19 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit) {
                         Divider()
                         Text(
                             modifier = Modifier.padding(top = 4.dp),
-                            text = "Plot: ${movie.plot}",
+                            text = annotatedString("Plot: ", movie.plot),
                             style = MaterialTheme.typography.bodySmall
                         )
 
                         Text(
                             modifier = Modifier.padding(top = 4.dp),
-                            text = "Actors: ${movie.actors}",
+                            text = annotatedString("Actors: ", movie.actors),
                             style = MaterialTheme.typography.bodySmall
                         )
 
                         Text(
                             modifier = Modifier.padding(top = 4.dp),
-                            text = "Rating: ${movie.rating}",
+                            text = annotatedString("Rating: ", movie.rating),
                             style = MaterialTheme.typography.bodySmall
                         )
                     }
@@ -133,10 +138,20 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit) {
                     } else {
                         Icons.Default.KeyboardArrowDown
                     },
-                    contentDescription = "Down arrow"
+                    contentDescription = "Expand card arrow"
                 )
             }
         }
+    }
+}
+
+private fun annotatedString(title: String, description: String): AnnotatedString {
+    return buildAnnotatedString {
+        withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+            append(title)
+        }
+
+        append(description)
     }
 }
 
