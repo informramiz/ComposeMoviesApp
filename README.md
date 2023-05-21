@@ -6,7 +6,7 @@ An that displays a list of movies written entirely in Jetpack Compose. It exists
 ## Concepts Covered
 This app covers the following concepts.
 
-1. `LazyColum` and `LazyRow` to show scrollable lists that can load dynamic data
+1. `LazyColum` and `LazyRow` to show scrollable lists that can load dynamic data and use of `keys` for efficiency and stability in lists.
 2. Basic animations like collapsing and expanding cards animation.
 3. Use of `Navigation Component` in Compose 
 4. Passing `arguments` between Compose Screens using Navigation Component Routes.
